@@ -68,7 +68,7 @@ CONFIG_DIRENV_TOML
     nix-env -i direnv
 
     # CLEAN
-    nix-collect-garbage -d
+    # nix-collect-garbage -d
     apt-get clean
     apt-get autoremove -y
     rm -rf /var/lib/apt/lists/*
