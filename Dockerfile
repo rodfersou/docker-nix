@@ -12,7 +12,6 @@ RUN <<DOCKER_BEFORE      bash                                                   
     # BASE UTILS
     apt update -y
     apt install -y \
-        direnv \
         curl
 
     # DIRENV HOOK
@@ -64,6 +63,9 @@ CONFIG_DIRENV_TOML
          --extra-conf "sandbox = false"             \
          --init none                                \
          --no-confirm
+    nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
+    nix-channel --update
+    nix-env -i direnv
 
     # CLEAN
     nix-collect-garbage -d
