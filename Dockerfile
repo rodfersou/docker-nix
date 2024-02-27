@@ -61,6 +61,7 @@ CONFIG_DIRENV_TOML
     | sh -s                                         \
          -- install linux                           \
          --extra-conf "sandbox = false"             \
+         --extra-conf "filter-syscalls = false"     \
          --init none                                \
          --no-confirm
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable unstable
