@@ -1,16 +1,18 @@
 # syntax=docker/dockerfile:1
-FROM alpine:latest
+FROM ubuntu:22.04
 
 ENV PATH /nix/var/nix/profiles/default/bin:$PATH
 
-RUN <<DOCKER_BEFORE      sh                                                                  \
+RUN <<DOCKER_BEFORE      bash                                                                \
  && <<\CONFIG_DIRENVRC   sed -r 's/^ {4}//;/^$/d;/^#/d' | cat > ~/.direnvrc                  \
  && <<CONFIG_DIRENV_TOML sed -r 's/^ {4}//;/^$/d;/^#/d' | cat > ~/.config/direnv/direnv.toml \
- && <<DOCKER_AFTER       sh
+ && <<DOCKER_AFTER       bash
 
 # DOCKER BEFORE
     # BASE UTILS
-    apk add --no-cache curl
+    apt update -y
+    apt install -y \
+        curl
 
     # DIRENV HOOK
     echo 'eval "\$(direnv hook bash)"' >> ~/.bashrc
@@ -67,4 +69,7 @@ CONFIG_DIRENV_TOML
 
     # CLEAN
     nix-collect-garbage -d
+    apt-get clean
+    apt-get autoremove -y
+    rm -rf /var/lib/apt/lists/*
 DOCKER_AFTER
