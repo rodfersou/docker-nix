@@ -3,6 +3,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest 
+    permissions:
+      contents: read
+      packages: write
     steps:
 
     - name: Copy Repo Files
@@ -15,6 +18,8 @@ jobs:
       id: docker
       with:
         IMAGE_NAME: ${{ github.repository }}
+        DOCKERFILE_PATH: 'Dockerfile'
+        BUILD_CONTEXT: '.'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
