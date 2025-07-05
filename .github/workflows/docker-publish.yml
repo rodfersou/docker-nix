@@ -16,11 +16,8 @@ jobs:
     - name: Publish Docker Image to GPR
       uses: machine-learning-apps/gpr-docker-publish@master
       id: docker
-      # with:
-        # IMAGE_NAME: 'docker-nix'
-        # IMAGE_NAME: ${{ github.repository }}
-        # DOCKERFILE_PATH: 'Dockerfile'
-        # BUILD_CONTEXT: '.'
+      with:
+        IMAGE_NAME: 'docker-nix'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
