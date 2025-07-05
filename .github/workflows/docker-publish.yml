@@ -17,9 +17,10 @@ jobs:
       uses: machine-learning-apps/gpr-docker-publish@master
       id: docker
       with:
-        IMAGE_NAME: ${{ github.repository }}
-        DOCKERFILE_PATH: 'Dockerfile'
-        BUILD_CONTEXT: '.'
+        IMAGE_NAME: 'docker-nix'
+        # IMAGE_NAME: ${{ github.repository }}
+        # DOCKERFILE_PATH: 'Dockerfile'
+        # BUILD_CONTEXT: '.'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
